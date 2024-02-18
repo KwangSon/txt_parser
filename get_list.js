@@ -30,19 +30,23 @@ function doSinglePage(url) {
 
             bookname = DomObject.querySelector("title").textContent;
             content = DomObject.querySelector('#novel_content');
+            content_line = content.querySelectorAll('p');
+            let fullContent = '';
+
+            content_line.forEach(pElement => {
+                fullContent += pElement.textContent + '\n';
+            });
             // TODO content parse
-            // downloadTextFile(bookname, content);
+            downloadTextFile(bookname, fullContent);
         })
     }, 1000);
 }
 
 pages = $('.list-body .item-subject');
 
-
-
-pages.each(function () {
-    const itemSubject = $(this);
-    const href = itemSubject.attr('href');
-    console.log(href);
-    return;
-});
+pages = ['a.', 'b'];
+for (let i = 0; i < pages.length; i++) {
+    const href = pages[i].attr('href'); // Get href attribute of the current page
+    setTimeout(() => console.log('fetching..'), 10000); // Schedule doSinglePage execution with 10 seconds delay
+    // doSinglePage(href);
+}
