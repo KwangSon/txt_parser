@@ -42,11 +42,20 @@ function doSinglePage(url) {
     }, 1000);
 }
 
+
 pages = $('.list-body .item-subject');
 
-pages = ['a.', 'b'];
-for (let i = 0; i < pages.length; i++) {
-    const href = pages[i].attr('href'); // Get href attribute of the current page
-    setTimeout(() => console.log('fetching..'), 10000); // Schedule doSinglePage execution with 10 seconds delay
-    // doSinglePage(href);
+// Returns a Promise that resolves after "ms" Milliseconds
+const timer = ms => new Promise(res => setTimeout(res, ms))
+
+async function save() { // We need to wrap the loop into an async function for this to work
+    for (var i = 0; i < pages.length; i++) {
+        console.log(i);
+        const href = pages[i].attr('href'); // Get href attribute of the current page
+        // doSinglePage(href);
+
+        await timer(3000); // then the created Promise can be awaited
+    }
 }
+
+save();
