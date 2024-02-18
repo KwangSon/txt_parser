@@ -28,13 +28,13 @@ function doSinglePage(url) {
 
             var DomObject = parser.parseFromString(result, "text/html");
 
-            bookname = DomObject.querySelector("title").textContent;
+            bookname = DomObject.querySelector("title").textContent + '.txt';
             content = DomObject.querySelector('#novel_content');
             content_line = content.querySelectorAll('p');
             let fullContent = '';
 
             content_line.forEach(pElement => {
-                fullContent += pElement.textContent + '\n';
+                fullContent += pElement.textContent + '\n\n';
             });
             // TODO content parse
             downloadTextFile(bookname, fullContent);
