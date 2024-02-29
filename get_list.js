@@ -51,8 +51,8 @@ const timer = ms => new Promise(res => setTimeout(res, ms))
 async function save() { // We need to wrap the loop into an async function for this to work
     for (var i = 0; i < pages.length; i++) {
         console.log(i);
-        const href = pages[i].attr('href'); // Get href attribute of the current page
-        // doSinglePage(href);
+        const href = pages[i].href; // Get href attribute of the current page
+        doSinglePage(href);
 
         await timer(3000); // then the created Promise can be awaited
     }
